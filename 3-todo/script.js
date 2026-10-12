@@ -51,8 +51,8 @@ function updateCounter() {
 function render() {
   list.innerHTML = "";
   const visible = getVisibleTasks();
-  for (let i = 0; i <= visible.length - 1; i++) {
-    const task = visible[i];
+
+  visible.forEach((task) => {
     const li = document.createElement("li");
     li.className = "task";
     if (task.done) {
@@ -71,7 +71,7 @@ function render() {
     li.appendChild(span);
     li.appendChild(del);
     list.appendChild(li);
-  }
+  });
   updateCounter();
 }
 
