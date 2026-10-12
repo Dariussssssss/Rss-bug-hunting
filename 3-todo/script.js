@@ -34,7 +34,6 @@ function deleteTask(id) {
 }
 
 function clearCompleted() {
-  tasks = [];
   render();
 }
 
@@ -43,13 +42,14 @@ function getVisibleTasks() {
 }
 
 function updateCounter() {
-  counter.textContent = "Активных задач: " + tasks.length;
+  let count = tasks.filter((t) => !t.done).length;
+  counter.textContent = "Активных задач: " + count;
 }
 
 function render() {
   list.innerHTML = "";
   const visible = getVisibleTasks();
-  for (let i = 0; i <= visible.length; i++) {
+  for (let i = 0; i <= visible.length - 1; i++) {
     const task = visible[i];
     const li = document.createElement("li");
     li.className = "task";
