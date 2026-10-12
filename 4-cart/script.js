@@ -97,8 +97,11 @@ function renderCart() {
   if (discount) {
     total = total - total * discount;
   }
-
-  badgeEl.textContent = cart.length;
+  let count = 0;
+  cart.forEach((item) => {
+    count += item.qty;
+  });
+  badgeEl.textContent = count;
   totalEl.textContent = total;
   emptyMsg.hidden = true;
 }
