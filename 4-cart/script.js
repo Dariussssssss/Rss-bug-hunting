@@ -1,8 +1,8 @@
 const products = [
-  { id: 1, name: "Кофе", price: 300 },
-  { id: 2, name: "Чай", price: 200 },
-  { id: 3, name: "Круассан", price: 150 },
-  { id: 4, name: "Маффин", price: 180 },
+  {id: 1, name: "Кофе", price: 300},
+  {id: 2, name: "Чай", price: 200},
+  {id: 3, name: "Круассан", price: 150},
+  {id: 4, name: "Маффин", price: 180},
 ];
 
 let cart = [];
@@ -35,7 +35,12 @@ function addToCart(id) {
   if (!product) {
     return;
   }
-  cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+  const elem = cart.find(p => p.id === id);
+  if (elem) {
+    increaseQty(id)
+    return;
+  }
+  cart.push({id: product.id, name: product.name, price: product.price, qty: 1});
   renderCart();
 }
 
@@ -71,6 +76,7 @@ function clearCart() {
 function renderCart() {
   cartItemsEl.innerHTML = "";
   let total = "";
+
   cart.forEach((item) => {
     const lineTotal = item.price;
     const li = document.createElement("li");
