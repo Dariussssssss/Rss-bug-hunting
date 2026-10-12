@@ -17,6 +17,7 @@ function addTask() {
     input.value = "";
     return;
   }
+  errorEl.hidden = true;
   tasks.push({id: nextId++, text: text, done: false});
   input.value = "";
   render();
@@ -34,6 +35,7 @@ function deleteTask(id) {
 }
 
 function clearCompleted() {
+  tasks = tasks.filter((t) => !t.done);
   render();
 }
 
